@@ -11,6 +11,11 @@ services:
       - "8000:8000"
     depends_on:
       - db
+    command: >-
+      sh -c 'python manage.py makemigrations &&
+      python manage.py migrate &&
+      python db_uploader.py &&
+      gunicorn --bind 0.0.0.0:8000 recipe_api.wsgi:application'
 
   db:
     image: mysql:5.7
@@ -20,6 +25,6 @@ services:
       MYSQL_DATABASE: 'recipe'
       MYSQL_PASSWORD: 'password'
     ports:
-      - "3311:3311"
+      - "3307:3307"
     expose:
-      - "3311"
+      - "3307"

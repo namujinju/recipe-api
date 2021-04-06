@@ -32,6 +32,11 @@ INSTALLED_APPS = [
     'corsheaders',
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -70,13 +75,23 @@ WSGI_APPLICATION = 'recipe_api.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'HOST': 'localhost',
+        'HOST': 'db',
         'PORT': 3306,
-        'USER': 'root',
-        'PASSWORD': '1234',
+        'USER': 'admin',
+        'PASSWORD': 'password',
         'NAME': 'recipe'
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'HOST': 'localhost',
+#         'PORT': 3306,
+#         'USER': 'root',
+#         'PASSWORD': '1234',
+#         'NAME': 'recipe'
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators

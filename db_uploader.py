@@ -17,8 +17,9 @@ def insert_house():
         House.objects.all().delete()
         for row in data_reader:
             House.objects.create(
-                user_id = row[0],
-                number = row[1],
+                id       = row[0],
+                user_id  = row[0],
+                number   = row[1],
                 password = row[2]
             )
 
@@ -30,6 +31,7 @@ def insert_door_use_log():
         DoorUseLog.objects.all().delete()
         for row in data_reader:
             DoorUseLog.objects.create(
+                id           = row[0],
                 created_at   = row[1],
                 house_number = House.objects.get(number=row[2]),
             )
@@ -49,11 +51,12 @@ def insert_user():
                 )
             else:
                 User.objects.create_user(
+                    id       = row[0],
                     email    = row[1],
                     name     = row[2],
                     password = row[3]
                 )
 
+insert_user()
 insert_house()
 insert_door_use_log()
-insert_user()

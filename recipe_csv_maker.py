@@ -58,11 +58,9 @@ csv_writer = csv.writer(csv_open)
 csv_writer.writerow(["id", "email", "name", "password"])
 
 for i in range(HOUSE_QUANTITY):
-    password        = USER_PASSWORD
-    hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
-    csv_writer.writerow([i+1, f'user{i+1}@gmail.com', f'user{i+1}', hashed_password])
+    password        = f'password{randint(1, 9999):>04d}'
+    csv_writer.writerow([i+1, f'user{i+1}@gmail.com', f'user{i+1}', password])
 
 password        = USER_PASSWORD
-hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
 
-csv_writer.writerow([HOUSE_QUANTITY+1, f'{ADMIN_TEST}@gmail.com', ADMIN_TEST, hashed_password])
+csv_writer.writerow([HOUSE_QUANTITY+1, f'{ADMIN_TEST}@gmail.com', ADMIN_TEST, password])
